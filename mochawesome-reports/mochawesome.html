@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mochawesome Report Card</title>
+    
+    <link rel="stylesheet" href="css/mochawesome.css">
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="report-info-cnt">
+          <h1 class="report-title">Makeblock_mBlockApp_UIAutoTest</h1>
+          <h3 class="report-date">Wednesday, December 7 2016, 04:42pm</h3>
+        </div>
+        <div class="quick-summary-cnt">
+            <ul class="list-unstyled quick-summary">
+              <li class="qs-item summary-duration" title="Duration">2.611<span>S</span></li>
+              <li class="qs-item summary-suites" title="Suites">1</li>
+              <li class="qs-item summary-tests" title="Tests">1</li>
+              <li class="qs-item summary-passes" title="Passed" data-filter="passed">0</li>
+              <li class="qs-item summary-failures" title="Failed" data-filter="failed">1</li>
+              <li class="qs-item summary-pending" title="Pending" data-filter="pending">0</li>
+            </ul>        </div>
+      </div>
+    </div>
+
+    <!-- Report Summary -->
+    <div class="summary">
+      <div class="container">
+          <div class="row">
+            <div class="summary-col summary-duration">
+              <h1 class="summary-count">2.611<span>S</span></h1>
+              <h4 class="summary-label">S</h4>
+            </div>
+            <div class="summary-col summary-suites" title="Suites">
+              <h1 class="summary-count">1</h1>
+              <h4 class="summary-label">Suite</h4>
+            </div>
+            <div class="summary-col summary-tests" title="Tests">
+              <h1 class="summary-count">1</h1>
+              <h4 class="summary-label">Test</h4>
+            </div>
+            <div class="summary-col summary-passes" data-filter="passed" title="Passed">
+              <h1 class="summary-count">0</h1>
+              <h4 class="summary-label">Passed</h4>
+            </div>
+            <div class="summary-col summary-failures" data-filter="failed" title="Failed">
+              <h1 class="summary-count">1</h1>
+              <h4 class="summary-label">Failed</h4>
+            </div>
+            <div class="summary-col summary-pending" data-filter="pending" title="Pending">
+              <h1 class="summary-count">0</h1>
+              <h4 class="summary-label">Pending</h4>
+            </div>
+          </div>      </div>
+    </div>
+    <div class="statusbar">
+      <div class="container">
+          <div class="row">
+            <div class="status-item status-item-pending-pct">0% Pending</div>
+            <div class="status-item status-item-passing-pct danger">0% Passing</div>
+          </div>      </div>
+    </div>
+
+    <!-- Suites -->
+    <div class="details container">
+            <section class="suite-wrap">
+          <div id="09952dd1-bc2f-4c74-b50e-4b6c704f6c4f" class="suite has-tests has-failed">
+            <h3 class="suite-title">Automated test</h3>
+            <h5 class="suite-filename">/Test/Script/mBlockApp_test.js</h5>
+            <!-- Suite Chart -->
+            <div class="suite-chart-wrap">
+              <canvas id="09952dd1-bc2f-4c74-b50e-4b6c704f6c4f" class="suite-chart" width="50" height="50" data-total-passes="0" data-total-failures="1" data-total-pending="0" data-total-skipped="0"></canvas>
+            </div>
+            <div class="suite-data-wrap">
+              <!-- Suite Summary -->
+              <ul class="suite-summary list-unstyled">
+                <li class="suite-summary-item duration">1.389 s</li>
+                <li class="suite-summary-item tests">1</li>
+                <li class="suite-summary-item passed">0</li>
+                <li class="suite-summary-item failed">1</li>
+                <li class="suite-summary-item pending">0</li>
+              </ul>
+              <!-- Test Info -->
+              <div class="suite-test-wrap">
+                <div class="suite-test-header" data-toggle="collapse" data-target="#09952dd1-bc2f-4c74-b50e-4b6c704f6c4f-test-list">
+                  <h4 class="suite-test-header-title">Tests</h4>
+                </div>
+                <div id="09952dd1-bc2f-4c74-b50e-4b6c704f6c4f-test-list" class="list-group test-list collapse in">
+                    <div id="20069d2c-1b2e-4f1f-9899-3d493a328880" class="list-group-item test failed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              test 001
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#20069d2c-1b2e-4f1f-9899-3d493a328880 > .test-code.collapse">Code</button>
+              <span class="test-duration ">1.389 s</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+            <p class="test-error-message">TypeError: Cannot read property &#x27;be&#x27; of undefined
+              <button class="btn btn-link btn-sm toggle-btn toggle-stack collapsed" data-toggle="collapse" data-target="#20069d2c-1b2e-4f1f-9899-3d493a328880 > .test-error-stack.collapse">Stack</button>
+            </p>
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">driver.get(url.main);<br>driver.getTitle().then((u) =&gt; {<br>	u.should.be.eql(<span class="hljs-string">'classroomddk'</span>);<br>});<br>done();</code></pre>
+          </div>
+          <!-- Test Error Stack -->
+          <div class="test-error-stack collapse">
+            <pre><code class="hljs small"><span class="hljs-built_in">TypeError</span>: Cannot read property <span class="hljs-string">'be'</span> <span class="hljs-keyword">of</span> <span class="hljs-literal">undefined</span><br>  at driver.getTitle.then (Test/Script/mBlockApp_test.js:<span class="hljs-number">19</span>:<span class="hljs-number">12</span>)<br>  at ManagedPromise.invokeCallback_ (node_modules/selenium-webdriver/lib/promise.js:<span class="hljs-number">1379</span>:<span class="hljs-number">14</span>)<br>  at TaskQueue.execute_ (node_modules/selenium-webdriver/lib/promise.js:<span class="hljs-number">2913</span>:<span class="hljs-number">14</span>)<br>  at TaskQueue.executeNext_ (node_modules/selenium-webdriver/lib/promise.js:<span class="hljs-number">2896</span>:<span class="hljs-number">21</span>)<br>  at asyncRun (node_modules/selenium-webdriver/lib/promise.js:<span class="hljs-number">2775</span>:<span class="hljs-number">27</span>)<br>  at node_modules/selenium-webdriver/lib/promise.js:<span class="hljs-number">639</span>:<span class="hljs-number">7</span><br>  at process._tickDomainCallback (internal/process/next_tick.js:<span class="hljs-number">129</span>:<span class="hljs-number">7</span>)<br><br>From: Task: Automated test test <span class="hljs-number">001</span><br>  at Context.ret (node_modules/selenium-webdriver/testing/index.js:<span class="hljs-number">128</span>:<span class="hljs-number">10</span>)<br></code></pre>
+          </div>
+        </div>        </div>
+              </div>
+            </div>
+        
+        
+          </div>
+        </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>Report generated by <a href="http://adamgruber.github.io/mochawesome/" target="_blank">mochawesome</a>.<br>Designed and built by <a href="https://github.com/adamgruber" target="_blank">adamgruber</a>. &copy;2016.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/vendor.js"></script>
+    <script src="js/mochawesome.js"></script>
+  </body>
+</html>

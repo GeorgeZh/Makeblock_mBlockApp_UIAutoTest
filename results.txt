@@ -1,0 +1,31 @@
+[[90mmochawesome[39m] Generating report files...
+
+
+[0m[0m
+[0m  Automated test[0m
+[2K[0G  [31m  1) test 001[0m
+
+
+[92m [0m[32m 0 passing[0m[90m (3s)[0m
+[31m  1 failing[0m
+
+[0m  1) Automated test test 001:
+[0m[31m     TypeError: Cannot read property 'be' of undefined[0m[90m
+    at driver.getTitle.then (Test/Script/mBlockApp_test.js:19:12)
+    at ManagedPromise.invokeCallback_ (node_modules/selenium-webdriver/lib/promise.js:1379:14)
+    at TaskQueue.execute_ (node_modules/selenium-webdriver/lib/promise.js:2913:14)
+    at TaskQueue.executeNext_ (node_modules/selenium-webdriver/lib/promise.js:2896:21)
+    at asyncRun (node_modules/selenium-webdriver/lib/promise.js:2775:27)
+    at node_modules/selenium-webdriver/lib/promise.js:639:7
+    at process._tickDomainCallback (internal/process/next_tick.js:129:7)
+  
+  From: Task: Automated test test 001
+    at Context.ret (node_modules/selenium-webdriver/testing/index.js:128:10)
+  
+[0m
+
+
+
+[[90mmochawesome[39m] Report saved to mochawesome-reports/mochawesome.html
+
+
