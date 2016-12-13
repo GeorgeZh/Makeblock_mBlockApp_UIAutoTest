@@ -25,6 +25,8 @@ module.exports = {
 		TEN : By.xpath('//*[@id="routerView"]/section/section/section[2]/section/section/section/ul/li[4]/div[3]/a')
 	},
 
+	WORKSPACE : By.css('#blockWorkSpace'),
+
 	GUIDE : 'guideGridMask',
 	GESTURE : 'gestureSvg',
 

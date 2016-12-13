@@ -26,7 +26,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.ONE).click();
-			opr.skipWarning(3)
+			opr.skipWarning(3);
 			driver.findElement(elem.RUN).click();
 			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
 			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
@@ -61,7 +61,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.THREE).click();
-			driver.sleep(1000)
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
 			var conn = blockId.lesson1.task3;
 			opr.connection(conn);
 			driver.findElement(elem.RUN).click();
@@ -78,7 +78,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.FOUR).click();
-			driver.sleep(1000)
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
 			var conn = blockId.lesson1.task4;
 			opr.connection(conn);
 			driver.findElement(elem.RUN).click();
@@ -95,8 +95,8 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.FIVE).click();
-			opr.skipWarning(2)
-			opr.deleteCode('move_with_time')
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			opr.deleteCode('move_with_time');
 			var conn = blockId.lesson1.task5;
 			opr.connection(conn);
 			driver.findElement(elem.RUN).click();
@@ -113,7 +113,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.SIX).click();
-			driver.sleep(1000)
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
 			opr.deleteCode('CzaBAzUPdzg9BlrI1tvF');
 			var conn = blockId.lesson1.task6;
 			opr.connection(conn);
@@ -132,7 +132,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.SEVEN).click();
-			driver.sleep(1000);
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
 			driver.executeScript("document.getElementById(arguments[0]).remove()",elem.GUIDE).then(() => {
 				driver.findElement(opr.getBlocklEditableTextByNum(1)).click();
 				wait.elementCssValueIs(elem.WIDGET,'display','block')
@@ -156,7 +156,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.EIGHT).click();
-			wait.elementCssValueIs(By.css('#blockWorkSpace'),'opacity','1')
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
 			opr.deleteCode('r0VWTqflgffDY2MWUSEE');
 			var conn = blockId.lesson1.task8;
 			opr.connection(conn);
@@ -184,21 +184,13 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.TASK.NINE).click();
 			opr.skipWarning(3);
 			var conn = blockId.lesson1.task9;
-			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
-				var newBlock = {};
-				newBlock[id] = '1';
-				conn.push(newBlock);
-			});
-			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
-				var newBlock = {};
-				newBlock[id] = '1';
-				conn.push(newBlock);
-			});
-			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
-				var newBlock = {};
-				newBlock[id] = '1';
-				conn.push(newBlock);
-			});
+			for(var i=0;i<3;i++){
+				opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
+					var newBlock = {};
+					newBlock[id] = '1';
+					conn.push(newBlock);
+				});
+			};
 			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
 				var newBlock = {};
 				newBlock[id] = '1';
@@ -220,6 +212,19 @@ test.describe('mBlockApp UIAutoTest',function(){
 				c.should.be.eql('1');
 			});
 			done();
+		});
+
+		test.describe('LESSON TWO',function(){
+
+			test.it('Lesson two and task one should be successfully passed',function(done){
+				driver.get(url.main);
+				opr.refreshLesson(2,1);
+				driver.findElement(elem.CLASSMODE).click();
+				driver.findElement(elem.LESSON.TWO).click();
+				driver.findElement(elem.TASK.FIVE).click();
+				opr.skipWarning(2);
+				done();
+			});
 		});
 
 	});

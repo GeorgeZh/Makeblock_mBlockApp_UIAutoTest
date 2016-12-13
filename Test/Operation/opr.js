@@ -34,7 +34,7 @@ var openLesson = function(lesson,task){
 	// 	+'{"lessonId":3,"sectionStatus":8,"isFirstStart":0}]\')')
 
 exports.skipWarning = function(num){
-	driver.sleep(1000)
+	wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
 	for(var i=0;i<num;i++){
 		driver.findElement(elem.MISSIONWARN).click()
 		driver.sleep(500)
