@@ -149,13 +149,13 @@ test.describe('mBlockApp UIAutoTest',function(){
 			done();
 		});
 
-		test.it('Lesson one and task eight should be successfully passed',function(done){
+		test.it.only('Lesson one and task eight should be successfully passed',function(done){
 			driver.get(url.main);
 			opr.refreshLesson(1,8);
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.EIGHT).click();
-			driver.sleep(1000)
+			wait.elementCssValueIs(By.css('#blockWorkSpace'),'opacity','1')
 			opr.deleteCode('r0VWTqflgffDY2MWUSEE');
 			var conn = blockId.lesson1.task8;
 			opr.connection(conn);
@@ -170,7 +170,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			done();
 		});
 
-		test.it.only('Lesson one and task nine should be successfully passed',function(done){
+		test.it('Lesson one and task nine should be successfully passed',function(done){
 			driver.get(url.main);
 			opr.refreshLesson(1,9);
 			driver.findElement(elem.CLASSMODE).click();
@@ -184,6 +184,13 @@ test.describe('mBlockApp UIAutoTest',function(){
 			opr.skipWarning(3);
 			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
 				console.log(id)
+				var conn = {"h[=u_}+jb|]`f3L)SQyA":'0'}
+				var add = {}
+				add[id] = '0'
+				console.log(add)
+				conn.push(add)
+				console.log(conn)
+				opr.connection(conn)
 			})
 
 

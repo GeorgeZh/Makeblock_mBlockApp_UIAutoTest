@@ -55,8 +55,10 @@ module.exports.elementCssValueIs = function(locator,css,value,time){
 			});
 	};
 	if(time == undefined){
+		driver.wait(until.elementLocated(locator),timeout);
 		driver.wait(equal(value),timeout);
 	}else{
+		driver.wait(until.elementLocated(locator),time);
 		driver.wait(equal(value),time);
 	};
 };
@@ -71,8 +73,10 @@ module.exports.elementCssValueContains = function(locator,css,value,time){
 			});
 	};
 	if(time == undefined){
+		driver.wait(until.elementLocated(locator),timeout);
 		driver.wait(containEql(value),timeout);
 	}else{
+		driver.wait(until.elementLocated(locator),time);
 		driver.wait(containEql(value),time);
 	};
 };
@@ -87,8 +91,10 @@ module.exports.elementAttributeIs = function(locator,attribute,value,time){
 			});
 	};
 	if(time == undefined){
+		driver.wait(until.elementLocated(locator),timeout);
 		driver.wait(equal(value),timeout);
 	}else{
+		driver.wait(until.elementLocated(locator),time);
 		driver.wait(equal(value),time);
 	};
 };
@@ -103,8 +109,10 @@ module.exports.elementAttributeContains = function(locator,attribute,value,time)
 			});
 	};
 	if(time == undefined){
+		driver.wait(until.elementLocated(locator),timeout);
 		driver.wait(containEql(value),timeout);
 	}else{
+		driver.wait(until.elementLocated(locator),time);
 		driver.wait(containEql(value),time);
 	};
 };
