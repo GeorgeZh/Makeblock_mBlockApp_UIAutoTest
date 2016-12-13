@@ -52,35 +52,21 @@ exports.refreshLesson = function(lesson,task){
 exports.connection = function(arg){
 	var idArr=[]
 	var indexArr=[]
-	for(var id in arg){
-		var index = arg[id]
-		idArr.push(id)
-		indexArr.push(index)
+	for(var i=0;i<arg.length;i++){
+		for(var id in arg[i]){
+			var index = arg[i][id]
+			idArr.push(id)
+			indexArr.push(index)
+		}
 	}
 	var num = idArr.length
-	if(num == 2){
+	for(var i=0;i<num-1;i++){
 		driver.executeScript("Blockly.specifyConnection(arguments[0],arguments[1],arguments[2],arguments[3])",
-			idArr[0],indexArr[0],idArr[1],indexArr[1])
-	}else if(num > 2){
-		for(var i=0;i<num-1;i++){
-			switch(indexArr[i]){
-				case "0":
-					driver.executeScript("Blockly.specifyConnection(arguments[0],arguments[1],arguments[2],arguments[3])",
-						idArr[i],0,idArr[i+1],0)
-					break;
-				case "1":
-					driver.executeScript("Blockly.specifyConnection(arguments[0],arguments[1],arguments[2],arguments[3])",
-						idArr[i],1,idArr[i+1],0)
-					break;
-				default:
-					driver.executeScript("Blockly.specifyConnection(arguments[0],arguments[1],arguments[2],arguments[3])",
-						idArr[i],indexArr[i],idArr[i+1],0)
-			}
-		}
-	}else{
-		console.log('The number of block is wrong')
+			idArr[i],indexArr[i],idArr[i+1],0)
 	}
 }
+
+exports.specifyConnection = function(id1,index1,id2,index2){}
 
 //arg = {'param':'paramCssSelector'}
 exports.selectParam = function(id,arg){
@@ -135,23 +121,11 @@ exports.getBlockTextByNum = function(num){
 	return By.css(css)
 }
 
-exports.setToolBlockId = function(toolLocator,blockLocator,id){
-	driver.findElement(toolLocator).click()
-	wait.elementIsVisible(blockLocator)
-	driver.findElement(blockLocator).click()
-	driver.executeScript("Blockly.selected.id=arguments[0]",id)
-}
-
 exports.getToolBlockId = function(toolLocator,blockLocator){
 	driver.findElement(toolLocator).click()
 	wait.elementIsVisible(blockLocator)
 	driver.findElement(blockLocator).click()
 	return driver.executeScript("return Blockly.selected.id")
-}
-
-exports.setBlockId = function(locator,id){
-	driver.findElement(locator).click()
-	driver.executeScript("Blockly.selected.id=arguments[0]",id)
 }
 
 exports.deleteCode = function(id){
@@ -161,6 +135,5 @@ exports.deleteCode = function(id){
 		.mouseMove(driver.findElement(elem.BIN))
 		.mouseUp(driver.findElement(elem.BIN),{x:-10,y:0})
 		.perform()
-		driver.sleep(300)
 	})
 }

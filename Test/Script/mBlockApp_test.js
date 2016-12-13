@@ -125,6 +125,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			done();
 		});
 
+		//引导过程无法正常点击参数区域，暂remove引导处理
 		test.it('Lesson one and task seven should be successfully passed',function(done){
 			driver.get(url.main);
 			opr.refreshLesson(1,7);
@@ -149,7 +150,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			done();
 		});
 
-		test.it.only('Lesson one and task eight should be successfully passed',function(done){
+		test.it('Lesson one and task eight should be successfully passed',function(done){
 			driver.get(url.main);
 			opr.refreshLesson(1,8);
 			driver.findElement(elem.CLASSMODE).click();
@@ -182,38 +183,42 @@ test.describe('mBlockApp UIAutoTest',function(){
 			.perform()
 			driver.findElement(elem.TASK.NINE).click();
 			opr.skipWarning(3);
+			var conn = blockId.lesson1.task9;
 			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
-				console.log(id)
-				var conn = {"h[=u_}+jb|]`f3L)SQyA":'0'}
-				var add = {}
-				add[id] = '0'
-				console.log(add)
-				conn.push(add)
-				console.log(conn)
-				opr.connection(conn)
-			})
-
-
-			// opr.setToolBlockId(tool.Move.MINE,tool.Move.move_with_time,'move_with_time1');
-			// opr.setToolBlockId(tool.Move.MINE,tool.Move.move_with_time,'move_with_time2');
-			// opr.setToolBlockId(tool.Move.MINE,tool.Move.move_with_time,'move_with_time3');
-			// opr.setToolBlockId(tool.Move.MINE,tool.Move.move_with_time,'move_with_time4');
-			// var conn = {"h[=u_}+jb|]`f3L)SQyA":'0',
-			// 			"move_with_time1":'1',
-			// 			"move_with_time2":'1',
-			// 			"move_with_time3":'1',
-			// 			"move_with_time4":'0'};
-			// opr.connection(conn);
-			// var conn = blockId.lesson1.task8;
-			// opr.connection(conn);
-			// driver.findElement(opr.getBlocklEditableTextByNum(4)).click()
-			// wait.elementCssValueIs(elem.WIDGET,'display','block')
-			// driver.findElement(block.move.turnRight).click()
-			// driver.findElement(elem.RUN).click();
-			// wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
-			// driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
-			// 	c.should.be.eql('1');
-			// });
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+			});
+			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+			});
+			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+			});
+			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+				opr.connection(conn);
+			});
+			driver.findElement(opr.getBlocklEditableTextByNum(2)).click();
+			wait.elementCssValueIs(elem.WIDGET,'display','block')
+			driver.findElement(block.move.backward).click()
+			driver.findElement(opr.getBlocklEditableTextByNum(3)).click()
+			wait.elementCssValueIs(elem.WIDGET,'display','block')
+			driver.findElement(block.move.turnLeft).click()
+			driver.findElement(opr.getBlocklEditableTextByNum(4)).click()
+			wait.elementCssValueIs(elem.WIDGET,'display','block')
+			driver.findElement(block.move.turnRight).click()
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
 			done();
 		});
 
