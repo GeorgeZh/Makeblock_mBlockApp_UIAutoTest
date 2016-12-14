@@ -10,6 +10,8 @@ module.exports = {
 		ONE : By.css('#routerView li:nth-child(1) > a'),
 		TWO : By.css('#routerView li:nth-child(2) > a'),
 		THREE : By.css('#routerView li:nth-child(3) > a'),
+		FOUR : By.css('#routerView li:nth-child(4) > a'),
+		FIVE : By.css('#routerView li:nth-child(5) > a'),
 	},
 
 	TASK : {

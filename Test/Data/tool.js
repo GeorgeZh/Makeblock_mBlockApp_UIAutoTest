@@ -4,21 +4,27 @@ module.exports = {
 	Phone : '',
 	Move : {
 		MINE : By.css('#toolboxDiv .move'),
-		move_with_time : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g'),
+		ONE : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g'),
+		TWO : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g:nth-child(4)'),
+		move_keep_run : By.css(''),
 	},
 	Show : {
 		MINE : By.css('#toolboxDiv .show'),
-		play_tone_pinao : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g'),
-		set_mbot_leds_with_time : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g:nth-child(4)'),
-		set_mbot_leds : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g:nth-child(6)'),
+		ONE : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g'),
+		TWO : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g:nth-child(4)'),
+		THREE : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g:nth-child(6)'),
 	},
-	Sense : '',
+	Sense : {
+		MINE : By.css('#toolboxDiv .sense'),
+		ONE : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g'),
+	},
 
 
 	Math : '',
 	Control : {
 		MINE : By.css('#toolboxDiv .flow'),
-		controls_repeat_ext : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g')
+		ONE : By.css('g.blocklyFlyout > g > g.blocklyBlockCanvas > g'),
+		wait : By.css(''),
 	}
 }
 

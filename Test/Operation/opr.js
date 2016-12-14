@@ -11,21 +11,8 @@ var until = require('selenium-webdriver').until
 
 //解锁课程
 var openLesson = function(lesson,task){
-	if(lesson == 1){
-		driver.executeScript('localStorage.setItem("lessons_status",'
-			+'\'[{"lessonId":1,"sectionStatus":' + task + ',"isFirstStart":0}]\')')
-	}else if(lesson == 2){
-		driver.executeScript('localStorage.setItem("lessons_status",'
-			+'\'[{"lessonId":1,"sectionStatus":10,"isFirstStart":0},'
-			+'{"lessonId":2,"sectionStatus":' + task + ',"isFirstStart":0}]\')')
-	}else if(lesson == 3){
-		driver.executeScript('localStorage.setItem("lessons_status",'
-			+'\'[{"lessonId":1,"sectionStatus":10,"isFirstStart":0},'
-			+'{"lessonId":2,"sectionStatus":10,"isFirstStart":0},'
-			+'{"lessonId":3,"sectionStatus":' + task + ',"isFirstStart":0}]\')')
-	}else{
-		console.log('lesson error')
-	}
+	driver.executeScript('localStorage.setItem("lessons_status",'
+			+'\'[{"lessonId":' + lesson + ',"sectionStatus":' + task + ',"isFirstStart":0}]\')')
 }
 
 	// driver.executeScript('localStorage.setItem("lessons_status",'
@@ -66,7 +53,10 @@ exports.connection = function(arg){
 	}
 }
 
-exports.specifyConnection = function(id1,index1,id2,index2){}
+exports.specifyConnection = function(id1,index1,id2,index2){
+	driver.executeScript("Blockly.specifyConnection(arguments[0],arguments[1],arguments[2],arguments[3])",
+		id1,index1,id2,index2)
+}
 
 exports.setParam = function(id,num,param){
 	driver.executeScript("return workspace.getBlockById(arguments[0]).childBlocks_[arguments[1]].svgPathDark_",id,num)
@@ -81,33 +71,32 @@ exports.setParam = function(id,num,param){
 	})
 }
 
-exports.getBlocklEditableTextByNum = function(num){
-	var css = "#blockWorkSpace .blocklyBlockCanvas > g >"
-	var editableTest = " g.blocklyEditableText"
-	var block = " g.blocklyDraggable >"
+exports.getBlocklEditableTextByNum = function(num,index){
+	var css = "#blockWorkSpace .blocklyBlockCanvas > g"
+	var editableTest = " > g.blocklyEditableText"
+	var block = " > g.blocklyDraggable"
 	for(var i=0;i<num;i++){
 		css += block
+	}
+	if(index == 2){
+		css += '~ g.blocklyDraggable'
 	}
 	css += editableTest
-	return By.css(css)
-}
-
-exports.setBlockEditableText = function(num,param){
-	driver.findElement(this.getBlocklEditableTextByNum(num)).click()
-	wait.elementCssValueIs(elem.WIDGET,'display','block')
-	driver.findElement(param).click()
-}
-
-exports.getBlockTextByNum = function(num){
-	var css = "#blockWorkSpace .blocklyBlockCanvas > g >"
-	var test = " g.blocklyText"
-	var block = " g.blocklyDraggable >"
-	for(var i=0;i<num;i++){
-		css += block
+	if(index == 1){
+		css += ' ~ g.blocklyEditableText'
 	}
-	css += test
-	console.log(css)
 	return By.css(css)
+}
+
+exports.setBlockText = function(num,param,index){
+	driver.findElement(this.getBlocklEditableTextByNum(num,index)).click()
+	wait.elementCssValueIs(elem.WIDGET,'display','block')
+	driver.actions()
+	.mouseMove(driver.findElement(param))
+	.mouseDown(driver.findElement(param))
+	.mouseUp()
+	.sendKeys('\uE00C')
+	.perform()
 }
 
 exports.getToolBlockId = function(toolLocator,blockLocator){
@@ -130,4 +119,8 @@ exports.deleteCode = function(id){
 		.mouseUp(driver.findElement(elem.BIN),{x:-10,y:0})
 		.perform()
 	})
+}
+
+exports.setWaitTime = function(time){
+	driver.executeScript("MBlockly.Control.SETTING.RESENT_COUNT=arguments[0]",time)
 }
