@@ -7,9 +7,9 @@ module.exports = {
 	CREATIONMODE: By.css('#routerView > section > section > div > div:nth-child(2) > div > div > a'),
 
 	LESSON : {
-		ONE : By.css('#routerView > section > section > ul > li:nth-child(1) > a'),
-		TWO : By.css('#routerView > section > section.lesson > section > ul > li:nth-child(2) > a'),
-		THREE : By.css('#routerView > section > section.lesson > section > ul > li:nth-child(3) > a'),
+		ONE : By.css('#routerView li:nth-child(1) > a'),
+		TWO : By.css('#routerView li:nth-child(2) > a'),
+		THREE : By.css('#routerView li:nth-child(3) > a'),
 	},
 
 	TASK : {

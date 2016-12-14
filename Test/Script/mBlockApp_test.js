@@ -95,7 +95,7 @@ test.describe('mBlockApp UIAutoTest',function(){
 			driver.findElement(elem.CLASSMODE).click();
 			driver.findElement(elem.LESSON.ONE).click();
 			driver.findElement(elem.TASK.FIVE).click();
-			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			opr.skipWarning(2)
 			opr.deleteCode('move_with_time');
 			var conn = blockId.lesson1.task5;
 			opr.connection(conn);
@@ -197,15 +197,9 @@ test.describe('mBlockApp UIAutoTest',function(){
 				conn.push(newBlock);
 				opr.connection(conn);
 			});
-			driver.findElement(opr.getBlocklEditableTextByNum(2)).click();
-			wait.elementCssValueIs(elem.WIDGET,'display','block')
-			driver.findElement(block.move.backward).click()
-			driver.findElement(opr.getBlocklEditableTextByNum(3)).click()
-			wait.elementCssValueIs(elem.WIDGET,'display','block')
-			driver.findElement(block.move.turnLeft).click()
-			driver.findElement(opr.getBlocklEditableTextByNum(4)).click()
-			wait.elementCssValueIs(elem.WIDGET,'display','block')
-			driver.findElement(block.move.turnRight).click()
+			opr.setBlockEditableText(2,block.move.backward);
+			opr.setBlockEditableText(3,block.move.turnLeft);
+			opr.setBlockEditableText(4,block.move.turnRight)
 			driver.findElement(elem.RUN).click();
 			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
 			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
@@ -214,23 +208,316 @@ test.describe('mBlockApp UIAutoTest',function(){
 			done();
 		});
 
-		test.describe('LESSON TWO',function(){
+	});
 
-			test.it('Lesson two and task one should be successfully passed',function(done){
-				driver.get(url.main);
-				opr.refreshLesson(2,1);
-				driver.findElement(elem.CLASSMODE).click();
-				driver.findElement(elem.LESSON.TWO).click();
-				driver.findElement(elem.TASK.FIVE).click();
-				opr.skipWarning(2);
-				done();
+	test.describe('LESSON TWO',function(){
+
+		test.it('Lesson two and task one should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,1);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.findElement(elem.TASK.ONE).click();
+			opr.skipWarning(2);
+			var conn = blockId.lesson2.task1;
+			opr.connection(conn)
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
 			});
+			done();
 		});
 
+		test.it('Lesson two and task two should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,2);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.findElement(elem.TASK.TWO).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson2.task2;
+			opr.getToolBlockId(tool.Show.MINE,tool.Show.play_tone_pinao).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+				opr.connection(conn);
+			});
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson two and task three should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,3);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.findElement(elem.TASK.THREE).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson2.task3;
+			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+			});
+			opr.getToolBlockId(tool.Show.MINE,tool.Show.play_tone_pinao).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+				opr.connection(conn);
+			});
+			opr.setBlockEditableText(3,block.move.turnRight);
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson two and task four should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,4);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.findElement(elem.TASK.FOUR).click();
+			opr.skipWarning(2);
+			opr.setParam('8Y4cu51K8QkAsFh2a2hz',0,block.color.red);
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson two and task five should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,5);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.findElement(elem.TASK.FIVE).click();
+			opr.skipWarning(2);
+			opr.setParam('RZExTNNSv3VgukEvwr9D',0,block.color.black);
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson two and task six should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,6);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.findElement(elem.TASK.SIX).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson2.task6;
+			opr.getToolBlockId(tool.Show.MINE,tool.Show.set_mbot_leds_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+			});
+			opr.getToolBlockId(tool.Show.MINE,tool.Show.set_mbot_leds_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+				opr.setParam(id,0,block.color.black);
+				opr.connection(conn);
+			});
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson two and task seven should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(2,7);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.TWO).click();
+			driver.actions()
+			.mouseDown(driver.findElement(elem.TASK.FOUR))
+			.mouseMove(driver.findElement(elem.TASK.THREE))
+			.mouseUp(driver.findElement(elem.TASK.THREE))
+			.perform()
+			driver.findElement(elem.TASK.SEVEN).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson2.task7;
+			opr.getToolBlockId(tool.Move.MINE,tool.Move.move_with_time).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.push(newBlock);
+				opr.connection(conn);
+				opr.setParam(id,1,"255");	
+			});
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+	});
+
+	test.describe('LESSON THREE',function(){
+
+		test.it('Lesson three and task one should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,1);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.findElement(elem.TASK.ONE).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson3.task1;
+			opr.connection(conn);
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson three and task two should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,2);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.findElement(elem.TASK.TWO).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson3.task2;
+			opr.connection(conn);
+			opr.setParam("P2UWfEyIxSGyqFpTLn4X",0,'5')
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson three and task three should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,3);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.findElement(elem.TASK.THREE).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson3.task3;
+			opr.getToolBlockId(tool.Control.MINE,tool.Control.controls_repeat_ext).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '3';
+				conn.splice(1,0,newBlock);
+				opr.connection(conn);
+				opr.setParam(id,0,"7");	
+			});
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson three and task four should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,4);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.findElement(elem.TASK.FOUR).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson3.task4;
+			opr.getToolBlockId(tool.Control.MINE,tool.Control.controls_repeat_ext).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '3';
+				conn.splice(1,0,newBlock);
+				opr.connection(conn);
+				opr.setParam(id,0,"5");	
+			});
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',20000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson three and task five should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,5);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.findElement(elem.TASK.FIVE).click();
+			opr.skipWarning(3);
+			opr.setParam("bbOpr3VV21pzWkrfDbBW",0,block.color.orange);
+			opr.setParam("bbOpr3VV21pzWkrfDbBW",1,block.color.black);
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',20000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson three and task six should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,6);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.findElement(elem.TASK.SIX).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson3.task6;
+			opr.getToolBlockId(tool.Show.MINE,tool.Show.set_mbot_leds).then((id) => {
+				var newBlock = {};
+				newBlock[id] = '1';
+				conn.splice(2,0,newBlock);
+				opr.connection(conn);
+				opr.setParam(id,0,block.color.black);
+				opr.setParam(id,1,block.color.orange);
+			});
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',10000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
+
+		test.it('Lesson three and task seven should be successfully passed',function(done){
+			driver.get(url.main);
+			opr.refreshLesson(3,7);
+			driver.findElement(elem.CLASSMODE).click();
+			driver.findElement(elem.LESSON.THREE).click();
+			driver.actions()
+			.mouseDown(driver.findElement(elem.TASK.FOUR))
+			.mouseMove(driver.findElement(elem.TASK.THREE))
+			.mouseUp(driver.findElement(elem.TASK.THREE))
+			.perform()
+			driver.findElement(elem.TASK.SEVEN).click();
+			wait.elementCssValueIs(elem.WORKSPACE,'opacity','1');
+			var conn = blockId.lesson3.task7;
+			opr.connection(conn);
+			opr.setParam("npyy3DZgRBKNZiLyCVoj",0,'5')
+			driver.findElement(elem.RUN).click();
+			wait.elementCssValueIs(elem.SUCCESS,'opacity','1',20000);
+			driver.findElement(elem.SUCCESS).getCssValue('opacity').then((c) => {
+				c.should.be.eql('1');
+			});
+			done();
+		});
 	});
 
 	test.after(function(done){
-		// driver.quit();
+		driver.quit();
 		done();
 	});
 

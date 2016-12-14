@@ -68,33 +68,16 @@ exports.connection = function(arg){
 
 exports.specifyConnection = function(id1,index1,id2,index2){}
 
-//arg = {'param':'paramCssSelector'}
-exports.selectParam = function(id,arg){
-	var paArr=[]
-	var pcssArr=[]
-	for(var pa in arg){
-		var pcss = arg[pa]
-		var p = Number(pa)
-		paArr.push(p)
-		pcssArr.push(pcss)
-	}
-	var num = paArr.length
-	for(var i=0;i<num-1;i++){
-		driver.executeScript("return workspace.getBlockById(arguments[0]).childBlocks_[arguments[1]].svgPathDark_",id2,paArr[i])
-		.then((target) => {
-			target.click()
-			driver.sleep(300)
-			driver.findElement(By.css(pcssArr[i])).click()
-		})
-	}
-}
-
-exports.param = function(id,arg){
-	driver.executeScript("return workspace.getBlockById(arguments[0]).childBlocks_0.svgPathDark_",id)
+exports.setParam = function(id,num,param){
+	driver.executeScript("return workspace.getBlockById(arguments[0]).childBlocks_[arguments[1]].svgPathDark_",id,num)
 	.then((target) => {
-		target.click()
-		driver.sleep(300)
-		driver.findElement(By.css(arg[0])).click()
+		driver.actions().mouseDown(target).mouseUp().perform()
+		wait.elementCssValueIs(elem.WIDGET,'display','block')
+		if(typeof(param) !== 'string'){
+			driver.findElement(param).click()
+		}else{
+			driver.actions().sendKeys(param).sendKeys('\uE007').perform()
+		}
 	})
 }
 
@@ -107,6 +90,12 @@ exports.getBlocklEditableTextByNum = function(num){
 	}
 	css += editableTest
 	return By.css(css)
+}
+
+exports.setBlockEditableText = function(num,param){
+	driver.findElement(this.getBlocklEditableTextByNum(num)).click()
+	wait.elementCssValueIs(elem.WIDGET,'display','block')
+	driver.findElement(param).click()
 }
 
 exports.getBlockTextByNum = function(num){
@@ -124,7 +113,12 @@ exports.getBlockTextByNum = function(num){
 exports.getToolBlockId = function(toolLocator,blockLocator){
 	driver.findElement(toolLocator).click()
 	wait.elementIsVisible(blockLocator)
-	driver.findElement(blockLocator).click()
+	// driver.findElement(blockLocator).click()
+	driver.actions()
+	.mouseMove(driver.findElement(blockLocator))
+	.mouseDown(driver.findElement(blockLocator))
+	.mouseUp()
+	.perform()
 	return driver.executeScript("return Blockly.selected.id")
 }
 
