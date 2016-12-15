@@ -127,9 +127,9 @@ module.exports.elementTextIs = function(locator,value,time){
 
 module.exports.elementTextContains = function(locator,value,time){
 	if(time == undefined){
-		driver.wait(elementTextContains(driver.findElement(locator),value),timeout);
+		driver.wait(until.elementTextContains(driver.findElement(locator),value),timeout);
 	}else{
-		driver.wait(elementTextContains(driver.findElement(locator),value),time);
+		driver.wait(until.elementTextContains(driver.findElement(locator),value),time);
 	};
 };
 

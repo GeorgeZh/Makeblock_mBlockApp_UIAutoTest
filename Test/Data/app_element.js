@@ -3,8 +3,11 @@ var By = require('selenium-webdriver').By
 module.exports = {
 
 	// BLUETOOTH : By.css('#connection-modal'),
-	CLASSMODE: By.css('#classmode'),
-	CREATIONMODE: By.css('#routerView > section > section > div > div:nth-child(2) > div > div > a'),
+	CLASSMODE : By.css('#classmode'),
+	CREATIONMODE : By.css('#routerView > section > section > div > div:nth-child(2) > div > div > a'),
+	ACTIVELESSON : By.css('li.swiper-slide-active > a > h1'),
+	LOCK : By.css('.swiper-slide-active span.icon.icon-lock'),
+	MORELESSON : By.css('li.swiper-slide.swiper-slide-active .text-warp > p'),
 
 	LESSON : {
 		ONE : By.css('#routerView li:nth-child(1) > a'),

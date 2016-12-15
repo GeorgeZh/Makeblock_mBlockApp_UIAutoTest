@@ -16,7 +16,7 @@ module.exports = function(grunt){
 					timeout:5*60000
 				},
 				// 执行脚本路径
-				src:['Test/Script/mBlockApp_test.js']
+				src:['Test/Script/task_test.js','Test/Script/lessonProcess_test.js']
 			}
 		}
 	});
